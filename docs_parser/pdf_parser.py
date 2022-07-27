@@ -20,7 +20,6 @@ def _get_reports_pages(pdf: PDF, relevant_report_titles: List[str]) -> Dict[str,
 
     for report_title, pages in reports_lines.items():
         print(f"detected {len(pages)} pages for report {report_title}")
-    breakpoint()
     return reports_lines
 
 
@@ -29,7 +28,6 @@ def parse_pdf(file_path: str, relevant_report_titles: List[str]) -> dict:
     print(f"Parsing {file_name}")
     with pdfplumber.open(file_path) as pdf:
         reports_pages = _get_reports_pages(pdf, relevant_report_titles)
-        breakpoint()
         report = {
             "title": "some-title",  # get the title
             "date": "some-date"  # get the date
