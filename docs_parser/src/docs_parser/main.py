@@ -11,6 +11,9 @@ REPORT_TITLES = (
     'ללוכה חוורה לע תוחוד'
 )
 
+SOURCE_DIR = "docs_parser/pdf_src"
+OUTPUT_DIR = "docs_parser/output"
+
 
 def prepare_output_dir(output_dir):
     if os.path.isdir(output_dir):
@@ -38,23 +41,18 @@ def write_outputs_to_jsons(outputs: List[dict], output_dir: str):
 
 
 def main():
-    current_script_dir = os.path.dirname(os.path.abspath(__file__))
-    source_dir = os.path.join(current_script_dir, "pdf_src")
-    output_dir = os.path.join(current_script_dir, "output")
-
-    if not os.path.isdir(source_dir):
+    if not os.path.isdir(SOURCE_DIR):
         raise Exception('Directory pdf_src must exist to run this')
 
-    prepare_output_dir(output_dir)
-
-    pdf_files_paths = get_pdf_files_paths(source_dir)
+    prepare_output_dir(OUTPUT_DIR)
+    pdf_files_paths = get_pdf_files_paths(SOURCE_DIR)
 
     outputs: List[dict] = []
     for file_path in pdf_files_paths:
         parsed_pdf = pdf_parser.parse_pdf(file_path, REPORT_TITLES)
         outputs.append(parsed_pdf)
 
-    write_outputs_to_jsons(outputs, output_dir)
+    write_outputs_to_jsons(outputs, OUTPUT_DIR)
 
 
 if __name__ == '__main__':

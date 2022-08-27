@@ -14,6 +14,8 @@ def get_pdf_page_lines(pdf_page: pdfplumber.page.Page) -> List[str]:
 
 
 def is_only_spaces_string(text: str) -> bool:
+    if len(text) == 0:
+        return False
     for char in text:
         if char != ' ':
             return False

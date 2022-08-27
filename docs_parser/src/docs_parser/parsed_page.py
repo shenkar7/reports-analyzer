@@ -1,4 +1,4 @@
-from lines_methods import *
+from .lines_methods import *
 import pdfplumber.page
 from datetime import datetime
 from typing import Dict, List, Tuple, Union
